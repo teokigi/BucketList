@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000/api/countries';
+const baseUrl = 'http://localhost:3000/api/countries/';
 
 export default {
   getBucketList() {
@@ -15,10 +15,10 @@ export default {
       .then(res => res.json())
   },
 
-  updateBucketListItem(id,payload){
+  updateBucketListItemWithVisit(id){
       return fetch(baseUrl + id,{
           method:'PUT',
-          body:JSON.stringify(payload),
+          body:JSON.stringify({visited:true}),
           headers:{'Content-Type': 'application/json'}
       })
       .then(res => res.json())

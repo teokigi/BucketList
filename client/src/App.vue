@@ -7,7 +7,7 @@
     <country-detail v-if="selectedCountry" :selectedCountry="selectedCountry">
     </country-detail>
 
-    <button v-if="!bucketList.includes(selectedCountry) && selectedCountry" v-on:click="addToBucketList">Add Country</button>
+    <button v-if="(!bucketList.map(country=>country.name).includes(selectedCountry.name)) && selectedCountry" v-on:click="addToBucketList">Add Country</button>
 
     <bucket-list :bucketList="bucketList"></bucket-list>
 </div>
@@ -41,6 +41,10 @@ export default {
       eventBus.$on('country-selected', (country) => {
         this.selectedCountry = country;
       })
+
+      eventBus.$on('visit-click', (country)=>{
+         this.visitedBucketList(country);
+      })
     },
     methods: {
         getCountries(){
@@ -53,8 +57,19 @@ export default {
             .then(bucketList => this.bucketList = bucketList)
         },
         addToBucketList(){
-            BucketService.addToBucketListItem(this.selectedCountry)
-            this.bucketList.push(this.selectedCountry)
+            const country = {
+                name: this.selectedCountry.name,
+                flag: this.selectedCountry.flag,
+                visited:false
+            }
+            BucketService.addToBucketListItem(country)
+            .then(country => this.bucketList.push(country))
+        },
+        visitedBucketList(country){
+            country.visited = true;
+            const index = this.bucketList.indexOf(bucketListCountry => bucketListCountry._id === country._id)
+            BucketService.updateBucketListItemWithVisit(country._id)
+            this.bucketList.splice(index,1,country)
         }
     }
 }
