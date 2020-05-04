@@ -43,18 +43,19 @@ export default {
       })
     },
     methods: {
-      getCountries(){
-        fetch("https://restcountries.eu/rest/v2/all")
-        .then(res => res.json())
-        .then(countries => this.countries = countries)
-      },
-      getBucketList(){
-        BucketService.getBucketList()
-        .then(bucketList => this.bucketList = bucketList)
-      },
-      addToBucketList(){
-        this.bucketList.push(this.selectedCountry)
-      }
+        getCountries(){
+            fetch("https://restcountries.eu/rest/v2/all")
+            .then(res => res.json())
+            .then(countries => this.countries = countries)
+        },
+        getBucketList(){
+            BucketService.getBucketList()
+            .then(bucketList => this.bucketList = bucketList)
+        },
+        addToBucketList(){
+            BucketService.addToBucketListItem(this.selectedCountry)
+            this.bucketList.push(this.selectedCountry)
+        }
     }
 }
 </script>
