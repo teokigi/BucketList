@@ -1,8 +1,14 @@
 # BucketList
 bucketlist of countries to visit fullstack
 
+- Javascript
+- html
+- css
 - (non-relational DB)mongodb
-- (framework)express js
+
+Frameworks
+- vue js
+- express js
 
 links in data from API that holds Country information.
 filters specific information.
