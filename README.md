@@ -6,7 +6,7 @@ bucketlist of countries to visit fullstack
 - css
 - (non-relational DB)mongodb
 
-Frameworks
+Frameworks:
 - vue js
 - express js
 
