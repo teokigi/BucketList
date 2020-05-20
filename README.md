@@ -1,4 +1,4 @@
-# Wk09D1-BucketList
+# BucketList
 bucketlist of countries to visit fullstack
 
 - (non-relational DB)mongodb
