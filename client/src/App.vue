@@ -3,12 +3,10 @@
     <h2>Travel Bucket List</h2>
 
     <country-select :countries="countries"/>
-
-    <country-detail v-if="selectedCountry" :selectedCountry="selectedCountry">
-    </country-detail>
-
-    <button v-if="(!bucketList.map(country=>country.name).includes(selectedCountry.name)) && selectedCountry" v-on:click="addToBucketList">Add Country</button>
-
+    <div v-if="selectedCountry">
+        <country-detail :selectedCountry="selectedCountry" />
+        <button v-if="!bucketList.map(country=>country.name).includes(selectedCountry.name)" v-on:click="addToBucketList">Add Country</button>
+    </div>
     <bucket-list :bucketList="bucketList"></bucket-list>
 </div>
 
